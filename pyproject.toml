@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatkit"
+authors = [{ name = "Yajun", email = "skyblueice234@gmail.com" }]
+dynamic = ["version"]
+description = "An open source framework for voice assistants compatible with Tenagent"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["voice", "ten"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Communications :: Conferencing",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+]
+
+[project.urls]
+Source = "https://github.com/yinyajun/chatkit"
+
+[project.optional-dependencies]
+anthropic = ["anthropic~=0.49.0"]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"chatkit" = ["py.typed"]
+
+[tool.pytest.ini_options]
+addopts = "--verbose"
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = []
+
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+fallback_version = "0.0.0-dev"
+
+[tool.ruff]
+exclude = [".git"]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "D", # Docstring rules
+    "I", # Import rules
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.coverage.run]
+command_line = "-m pytest"
+source = ["src"]
+omit = ["*/tests/*"]
